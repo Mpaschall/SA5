@@ -5,17 +5,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MyServlet extends HttpServlet {
 
+    //Servlet variables
     protected String InitValue1 = "1";
     protected String InitValue2 = "2";
     protected String InitValue3 = "3";
     protected String InitValue4 = "4";
 
+    //Method to get initial values from xml parameters
     public void init(MyServlet myServlet) throws ServletException{
     InitValue1 = myServlet.getInitParameter("param1");
     InitValue2 = myServlet.getInitParameter("param2");
@@ -23,12 +27,18 @@ public class MyServlet extends HttpServlet {
     InitValue4 = myServlet.getInitParameter("param4");
   }
 
-  public void service(HttpServletRequest request, HttpServletResponse response)
+  //service to let servlet print data to webpage
+  public void service(ServletRequest request, ServletResponse response)
         throws ServletException, IOException {
 
-    response.getWriter().write("<html><body>Value 1= " +
-            InitValue1 + "<br>" + "Value 2= " + InitValue2 + "<br>" + "Value 3= " + InitValue3 + 
-            "<br>" + "Value 4= " + InitValue4 + "</body></html>");
+    //Print values
+    response.getWriter().write(
+            "<html><body>"+ 
+            "Value 1= " + InitValue1 + "<br>" + 
+            "Value 2= " + InitValue2 + "<br>" + 
+            "Value 3= " + InitValue3 + "<br>" + 
+            "Value 4= " + InitValue4 + 
+            "</body></html>");
   }
 
     
